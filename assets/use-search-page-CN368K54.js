@@ -1,0 +1,1 @@
+import{a as e,n as t}from"./jsx-runtime-D3jfb0Ew.js";import{t as n}from"./use-debounce-BF3w1Iy5.js";var r=e(t(),1);function i(e=300){let[t,i]=(0,r.useState)(``),a=n(t.trim(),e),[o,s]=(0,r.useState)({term:``,page:1});return{search:t,setSearch:i,term:a,page:o.term===a?o.page:1,setPage:(0,r.useCallback)(e=>s({term:a,page:e}),[a])}}export{i as t};
