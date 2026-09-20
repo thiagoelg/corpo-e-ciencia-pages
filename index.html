@@ -6,13 +6,26 @@
     <meta name="theme-color" content="#121216" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- "default", not "black-translucent": the app now has a light theme, and translucent means
+         white status-bar text over whatever is behind it. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Corpo e Ciência" />
     <meta name="description" content="Suas fichas de treino, técnicas e evolução de cargas." />
     <link rel="icon" href="/corpo-e-ciencia-pages/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/corpo-e-ciencia-pages/favicon.svg" />
+    <link rel="apple-touch-icon" href="/corpo-e-ciencia-pages/apple-touch-icon.png" />
     <title>Corpo e Ciência</title>
-    <script type="module" crossorigin src="/corpo-e-ciencia-pages/assets/index-B51dFR1x.js"></script>
+    <script>
+      // Paint in the stored theme before React boots, so "Automático" on a light phone
+      // does not flash the dark shell. Mirrors applyTheme() in src/stores/settings.ts.
+      try {
+        var saved = JSON.parse(localStorage.getItem("cc.settings") || "{}");
+        var theme = (saved.state && saved.state.theme) || "dark";
+        var dark = theme === "dark" || (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#121216" : "#f8f7f4");
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/corpo-e-ciencia-pages/assets/index-DBbNF38D.js"></script>
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/jsx-runtime-D3jfb0Ew.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/react-dom-DenslgJm.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/resources-D5MYjAv2.js">
@@ -21,6 +34,7 @@
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/useValueChanged-d2AVxijb.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/activity-CYYA9Kp2.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/book-open-ICSmefTJ.js">
+    <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/check-ChzIIRdV.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/clipboard-list-Dip1cNxb.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/dumbbell-DWYA2M7z.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/heart-pulse-ButIzzJo.js">
@@ -28,9 +42,9 @@
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/with-selector-D8PCVibD.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/useScrollLock-DQjxCOrS.js">
     <link rel="modulepreload" crossorigin href="/corpo-e-ciencia-pages/assets/CompositeList-DRv77sym.js">
-    <link rel="stylesheet" crossorigin href="/corpo-e-ciencia-pages/assets/index-B-Pv2wTf.css">
-  </head>
+    <link rel="stylesheet" crossorigin href="/corpo-e-ciencia-pages/assets/index-DtoYs23B.css">
+  <link rel="manifest" href="/corpo-e-ciencia-pages/manifest.webmanifest"></head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
