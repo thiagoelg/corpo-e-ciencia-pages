@@ -1,0 +1,1 @@
+import{a as e,n as t}from"./jsx-runtime-D3jfb0Ew.js";var n=e(t(),1);function r(e){let t=(0,n.useCallback)(t=>{let n=window.matchMedia(e);return n.addEventListener(`change`,t),()=>n.removeEventListener(`change`,t)},[e]);return(0,n.useSyncExternalStore)(t,()=>window.matchMedia(e).matches,()=>!1)}var i=()=>r(`(min-width: 768px)`);export{r as n,i as t};
